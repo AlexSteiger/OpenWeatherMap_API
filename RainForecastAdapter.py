@@ -1,8 +1,6 @@
-# Python program to find current
-# weather details of any city
-# using openweathermap api
- 
-# import required modules
+# Python program to find current weather details 
+# of an location using openweathermap api
+
 import requests, json
 import pandas as pd
 from datetime import datetime
@@ -26,19 +24,17 @@ lon = ["28.383499","12.079214"]
 
 for i in range(0, 2):
   print(postgreSQLTable[i])
-#postgreSQLTable = "turkey_weather";
 
-# Locations:
-# Bakir,Turkey Fields:
-#lat = "40.137442"
-#lon = "28.383499"
-# Kassow,Germany Fields:
-#lat = "53.869024"
-#lon = "12.079214"
+  # Locations:
+  # Bakir,Turkey Fields:
+  # lat = "40.137442"
+  # lon = "28.383499"
+  # Kassow,Germany Fields:
+  # lat = "53.869024"
+  # lon = "12.079214"
 
   # complete_url variable to store complete url address
   complete_url = base_url + "appid=" + api_key + "&lat=" + lat[i] + "&lon=" + lon[i] + "&exclude=minutely,hourly,alerts"
-  #print(complete_url)
 
   # get method of requests module return response object
   response = requests.get(complete_url)
@@ -93,7 +89,6 @@ for i in range(0, 2):
     postgreSQLConnection.execute(
         "DELETE FROM {} t WHERE EXISTS (SELECT FROM {} WHERE date = t.date AND ctid < t.ctid);"
         .format(postgreSQLTable[i],postgreSQLTable[i]))
-
   except:
     print("except...")
     print("create table", postgreSQLTable[i])
